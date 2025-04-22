@@ -9,7 +9,7 @@
 // ---- 1. VARIÁVEIS ----
 echo "<h2>1. Variáveis</h2>";
 
-$nome = "Maria"
+$nome = "Maria";
 $idade = 25;
 $profissao = "Desenvolvedora";
 $salario = 5000.50;
@@ -155,12 +155,12 @@ echo "<h2>5. Funções</h2>";
 // Função simples
 function saudacao($nome) {
     return "Olá, $nome! Seja bem-vindo(a)!";
-}
-
+};
+ 
 // Função com parâmetros padrão
-function calcularMedia($nota1, $nota2, $nota3 = 0) {
-    return ($nota1 + $nota2 + $nota3) / 3;
-}
+function calcularMedia ($nota1, $nota2, $nota3 = 0) {
+    return $nota1 + $nota2 + $nota3 / 3;
+};
 
 // Função anônima
 // Função anônima é uma função sem nome, que pode ser atribuída a uma variável.
@@ -192,11 +192,25 @@ echo "==========================================================================
 echo "<h2>Exercício Prático</h2>";
 
 // Função para calcular média de notas
-
-
-function calcularMedia($nota1, $nota2, $nota3 = 0) {
-    return ($nota1 + $nota2 + $nota3) / 3;
+function Media($notas) {
+    $soma = array_sum($notas);
+    $media = $soma / count($notas);
+    return $media;
 }
+
+function determinarStatus($media) {
+    if ($media >= 9.0) {
+        return "<span style='color: blue;'>Excelente</span>";
+    } elseif ($media >= 7.0) {
+        return "<span style='color: green;'>Aprovado</span>";
+    } elseif ($media >= 6.0) {
+        return "<span style='color: orange;'>Recuperação</span>";
+    } else {
+        return "<span style='color: red;'>Reprovado</span>";
+    }
+}
+
+
 
 
 // Criando um array com alunos e notas
@@ -209,36 +223,15 @@ $turma = [
 ];
 
 // Exibindo os resultados
-echo "<strong>Resultados:</strong> <br>";
-
-
-foreach ($turma as $nome => $aluno) {
-    // Calculando a média do aluno
-    $media = calcularMedia($aluno["notas"]);
-    echo "Aluno: {$aluno['nome']} - Média: " . number_format($media, 3, ',', '.') . "<br>";
+echo "<strong>Boletim 2DA:</strong><br>";
+foreach ($turma as $aluno) {
+    $media = Media($aluno["notas"]); // Calcula a média
+    $status = determinarStatus($media); // Determina o status
+    $mediaFormatada = number_format($media, 1, ',', '.'); // Formata a média
+    $notasFormatadas = implode(', ', $aluno["notas"]); // Formata as notas para exibição
+    echo "Aluno(a): {$aluno['nome']} - Notas: {$notasFormatadas} - Média: {$mediaFormatada} - Status: {$status}<br>";
 }
-// Formatação
-number_format($media, 3, ',', '.')
-
-// Verificando se o aluno está aprovado ou reprovado
-    if ($media >= 6) {
-        echo "Status: Aprovado <br>";
-    } elseif ($media >= 6 && $media < 10) {
-        echo "Status: Em recuperação <br>";
-    } else {
-        echo "Status: Reprovado <br>";
-    }
-
-    // **Exibindo o Boletim da Turma**:
-    // - Para cada aluno na turma, calcule a média das notas usando a função `calcularMediaNotas()`.
-    // - Exiba o nome do aluno, a média calculada e o status do aluno de acordo com a média:
-    //   - **Excelente**: Se a média for igual ou superior a 9.0.
-    //   - **Aprovado**: Se a média for igual ou superior a 7.0, mas menor que 9.0.
-    //   - **Recuperação**: Se a média for igual ou superior a 6.0, mas menor que 7.0.
-    //   - **Reprovado**: Se a média for inferior a 6.0.
-    
-    echo "<br>";
-    echo "=============================================================================";
 
 
-?>
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
