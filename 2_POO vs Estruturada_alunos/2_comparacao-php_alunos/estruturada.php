@@ -1,74 +1,30 @@
 <?php
 // ==========================================
-// PARTE 2: PROGRAMAÇÃO ORIENTADA A OBJETOS
+// PARTE 1: PROGRAMAÇÃO ESTRUTURADA
 // ==========================================
 
+// Dados do primeiro cachorro
+$nome_cachorro_1 = "Nelson";
+$comida_cachorro_1 = 3;
+$sono_cachorro_1 = false;
 
-// 1ª Digitação (Aqui)
+// Dados do segundo cachorro
+$nome_cachorro_2 = "Jeremias";
+$comida_cachorro_2 = 1;
+$sono_cachorro_2 = true;
 
-
-
-
-// Usando métodos para manipular os objetos
-
-
-// 2ª Digitação (Aqui)
-class cachorro {
-    private $nome;
-    private $comida;
-    private $sono;
-
-    public function __construct($nome, $comida, $sono) {
-        $this->nome = $nome;
-        $this->comida = $comida;
-        $this->sono = $sono;
-    }
-
-    public function comer() {
-        if ($this->comida > 0) {
-        $this->comida -= 1;}
-    }
-
-    public function dormir() {
-        $this->sono = false;
-    }
-
-    public function getNome() {
-        Return $this->nome;
-    }
-
-    public function getComida() {
-        Return $this->comida;
-    }
-
-    public function getsono() {
-        Return $this->sono;
+// Funções para manipular os dados
+function comer($quantidade_comida) {
+    return $quantidade_comida - 1;
 }
 
+function dormir() {
+    return true;
 }
 
-
-// Criando vários cachorros
-
-$cachorros = [
-    new Cachorro("Cléo", 247, true),
-    new Cachorro("Francisco", 5, true),
-    new Cachorro("Conan", 19, false),
-    new Cachorro("Leleco", 3, false),
-    new Cachorro("Babi", 13, true)
-];
-
-foreach ($cachorros as $cachorro) {
-    if ($cachorro->getComida()> 0) {
-        $cachorro-> comer();
-    }
-
-    if ($cachorro->getSono()) {
-        $cachorro->dormir();
-    }
-
-}
-
+// Usando as funções
+$comida_cachorro_1 = comer($comida_cachorro_1);
+$sono_cachorro_2 = dormir();
 
 // Exibindo os resultados no navegador
 echo "<!DOCTYPE html>
@@ -76,31 +32,12 @@ echo "<!DOCTYPE html>
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Resultados dos Cachorros (POO)</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            margin: 10px 0;
-        }
-    </style>
+    <title>Resultados dos Cachorros</title>
 </head>
 <body>
-    <h1>Resultados dos Cachorros (POO)</h1>";
-
-foreach ($cachorros as $cachorro) {
-    echo "<p><strong>{$cachorro->getNome()}</strong>:</p>";
-    echo "<ul>";
-    echo "<li>Comida restante: <strong>{$cachorro->getComida()}</strong></li>";
-    echo "<li>Está com sono? <strong>" . ($cachorro->getSono() ? 'Sim' : 'Não') . "</strong></li>";
-    echo "</ul>";
-}
-
-echo "</body>
+    <h1>Resultados dos Cachorros</h1>
+    <p><strong>$nome_cachorro_1</strong> agora tem <strong>$comida_cachorro_1</strong> unidades de comida.</p>
+    <p><strong>$nome_cachorro_2</strong> está com sono? <strong>" . ($sono_cachorro_2 ? 'Sim' : 'Não') . "</strong></p>
+</body>
 </html>";
 ?>
